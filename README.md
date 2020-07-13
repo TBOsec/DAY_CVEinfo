@@ -19,9 +19,9 @@
 
 1、下载项目文件
 
-`git clone https://github.com/knight-TBO/NEW_CVEinfo.git`
+`git clone https://github.com/knight-TBO/DAY_CVEinfo.git`
 
-2、`cd NEW_CVEinfo` 目录
+2、`cd DAY_CVEinfo` 目录
 
 3、安装需求库
 
