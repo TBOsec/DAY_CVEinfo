@@ -23,7 +23,7 @@ headers = {
     'Upgrade-Insecure-Requests': '1',
 }
 access_token = ''
-content = '' #表示企业微信的文本信息
+content = '' #表示企业微信文本信息
 
 def get_cve():
     #时间比我们晚，#取三天前的漏洞才有cvss评分
