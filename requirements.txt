@@ -1,2 +1,2 @@
 translate==3.5.0
-httpx==0.13.3
+httpx==0.23.0
