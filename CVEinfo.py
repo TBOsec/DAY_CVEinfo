@@ -1,6 +1,6 @@
 
 import httpx,re,time,datetime
-from translate import Translator
+from pygtrans import Translate
 
 
 cpid = 'wwdXXXXXXXX' #企业微信的企业ID
@@ -29,11 +29,15 @@ def get_cve():
     #时间比我们晚，#取三天前的漏洞才有cvss评分
     today = datetime.date.today()
     yesterday = today-datetime.timedelta(days=3)#3
+    tomorrow = today+datetime.timedelta(days=3)#3
     pubStartDate = str(yesterday) +'T00:00:00:000 UTC-05:00'
+    pubEndDate = str(tomorrow) +'T00:00:00:000 UTC-05:00'
 
     if care == 1:
         for risk in risk_like:
-            params = {'pubStartDate': pubStartDate,'cvssV3Severity': risk}
+            params = {'pubStartDate': pubStartDate,
+                      'pubEndDate': pubEndDate,
+                      'cvssV3Severity': risk}
             with httpx.Client(params=params) as client:
                 res = client.get(url).json()
             if res['totalResults'] > 0:
@@ -66,10 +70,9 @@ def res_content(res):
             content = '**              【新增漏洞告警】**\n'+id +pubdate + baseSeverity+' '+score+description
             send_wx(access_token,content)#发送到企业微信
 
-def translat(context): #翻译描述信息
-        translator = Translator(to_lang="chinese")
-        translation = translator.translate(context)
-        return translation
+def translat(context): #翻译描述信息    
+   client = Translate()
+   return str(client.translate(context))
 
 def get_token():
     global cpid,cpsecret,access_token

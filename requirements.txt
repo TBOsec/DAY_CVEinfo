@@ -1,2 +1,2 @@
-translate==3.5.0
+pygtrans==1.4.0
 httpx==0.13.3
